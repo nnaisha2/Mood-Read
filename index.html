@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Find books according to your moods.">
+  <title>Mood Read</title>
+<!--style-->
+<link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <header>
+        <h1>Book Recommender</h1>
+    </header>
+   <div class="container">
+    <span style='font-size:100px;'>&#128211;</span>
+    <p style="text-align:center;">Want to go on a literary adventure? Our book recommendation tool is here to save the day! Whether you're happy, sad, or anywhere in between, we'll find the perfect book to match your mood. Just select how you're feeling from the dropdown menu, and let the magic begin. Ready? Set. Read!</p>
+    <form id="moodForm">
+        <label for="mood">Select Your Mood:</label>
+        <select id="mood" name="mood">
+            <option value="Excitement">Excitement</option>
+            <option value="Awe">Awe</option>
+            <option value="Admiration">Admiration</option>
+            <option value="Amusement">Amusement</option>
+            <option value="Calmness">Calmness</option>
+            <option value="Craving">Craving</option>
+            <option value="Disgust">Disgust</option>
+            <option value="Empathetic">Empathetic Pain</option>
+            <option value="Entrancement">Entrancement</option>
+            <option value="Fear">Fear</option>
+            <option value="Horror">Horror</option>
+            <option value="Interest">Interest</option>
+            <option value="Joy">Joy</option>
+            <option value="Nostalgia">Nostalgia</option>
+            <option value="Romance">Romance</option>
+            <option value="Sadness">Sadness</option>
+            <option value="Satisfaction">Satisfaction</option>
+            <option value="Sexual">Sexual Desire</option>
+            <option value="Surprise">Surprise</option>
+        </select>
+        <button type="submit">Get Recommendations</button>
+    </form>
+    <div id="recommendations">
+        <h2>Recommendations:</h2>
+        <ul id="book-list"></ul>
+    </div>
+   </div>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#moodForm").submit(function(event){
+    event.preventDefault();
+    var mood = $("#mood").val();
+   
+    $.ajax({
+      url: "http://localhost:5000/recommendations",
+      type: "POST",
+      data: JSON.stringify({ 'mood': mood }),
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
+      success: function(data){
+        $("#book-list").empty();  // clear the old book list
+
+        // populate the new recommendations
+        $.each(data, function(index, book){
+          $("#book-list").append(
+            "<li>" + book['title'] + " by " + book['author'] + "</li>"
+            );
+        });
+      },
+      error: function(xhr){
+        alert(xhr.responseJSON.message);
+      }
+    });
+  });
+});
+</script>
+    <footer>
+        <p>&copy; 2024 Mood Read by Aisha</p>
+    </footer>
+</body>
+</html>`

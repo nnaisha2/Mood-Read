@@ -1,0 +1,63 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    height: 100vh;
+    background-color: #f0f8ff;
+    font-family: 'Abhaya Libre', serif;
+    font-size: 18px; /* Updated font size */
+}
+h1,
+h2 {
+    color: #5b3d5e;
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    margin-top: 20px;
+}
+p {
+    color: #5b3d5e;
+    font-family: 'Abhaya Libre', serif;
+    font-size: 22px; /* Increased font size */
+    text-align: justify;
+    margin: 15px;
+}
+label, select, button {
+    font-family: 'Abhaya Libre';
+    font-size: 16px;
+    margin: 10px 0;
+}
+select {
+    padding: 10px;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 5px;
+    border: 1px solid #5b3d5e;
+}
+button {
+    background-color: #5b3d5e; /* Accent color */
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: transform 0.3s, background-color 0.3s;
+    margin-top: 20px;
+}
+button:hover {
+    background-color: #4b2d4a; /* Slightly muted pink */
+}
+#recommendations {
+    margin-top: 20px;
+    text-align: center;
+}
+#book-list {
+    list-style-type: none;
+    padding: 0;
+}
